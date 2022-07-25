@@ -12,7 +12,7 @@ makeCacheMatrix <- function(x = matrix()) {
     m <- NULL
     ## sets m to NULL to clear previous caches
     
-    ## bellow are the 'setter' and 'getter' for this function allowing the matrix or the inverse to 
+    ## below are the 'setter' and 'getters' for this function allowing the matrix or the inverse to 
     ## be called upon
     set <- function(y) {
       x <<- y 
@@ -22,7 +22,7 @@ makeCacheMatrix <- function(x = matrix()) {
     ## Function that returns x (the matrix)
     
     setinverse <- function(inverse) m <<- inverse  
-    ## sets stores the inverse
+    ## sets / stores the inverse
     
     getinverse <- function() m 
     ## reads out the inverse
@@ -39,22 +39,22 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## Again using the example code provided I have changed 'inv' to 'm' and updated each reference of
 ## 'mean' to 'inverse'
-## I have also updated the message to  say 'getting unversed matrix'
+## I have also updated the message to  say 'getting inversed matrix'
 
 
 cacheSolve <- function(x, ...) {
-  ## Return a matrix that is the inverse of 'x'
+  ## Returns a matrix that is the inverse of 'x'
   
   m <- x$getinverse()
   if(!is.null(m)) {
     message("getting inversed matrix")
     return(m)
   }
-  ## compute the inverse of the matrix in object 'x'
+  ## computes the inverse of the matrix in object 'x'
   
   data <- x$get()
   m <- solve(data, ...)
   x$setinverse(m)
   m
-  ## Return a matrix that is the inverse of 'x'
+  ## Returns a matrix that is the inverse of 'x'
 }
